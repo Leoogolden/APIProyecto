@@ -32,10 +32,30 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Descrpcion" , g.Descripcion);
             //int regsAfectados = consulta.ExecuteNonQuery();
             return consulta.ExecuteNonQuery();
+        }
 
+        public static List<Grupos> ObtenerGruposxUsuario()
+        {
+            List<Grupos> aux = new List<Grupos>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "GruposxPersona";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while(dataReader.Read())
+            {
+                Grupos g = new Grupos();
+                g.Nombre = dataReader["Nombre"].ToString();
+                g.Descripcion = dataReader["Descripcion"].ToString();
+                g.IdGrupo = Convert.ToInt32(dataReader["IdGrupo"]);
+                aux.Add(g);
+            }
+            Desconectar(Conexion);
+            return aux;
 
 
         }
+
 
 
 

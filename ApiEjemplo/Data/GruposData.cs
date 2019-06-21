@@ -34,18 +34,20 @@ namespace ApiEjemplo.Data
             return consulta.ExecuteNonQuery();
         }
 
-        public static List<Grupos> ObtenerGruposxUsuario()
+        public static List<Grupos> ObtenerGruposxUsuario(int id)
         {
             List<Grupos> aux = new List<Grupos>();
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "GruposxPersona";
+            consulta.CommandText = "ListarGruposxUsuario";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idus", id);
             SqlDataReader dataReader = consulta.ExecuteReader();
             while(dataReader.Read())
             {
                 Grupos g = new Grupos();
                 g.Nombre = dataReader["Nombre"].ToString();
+
                 g.Descripcion = dataReader["Descripcion"].ToString();
                 g.IdGrupo = Convert.ToInt32(dataReader["IdGrupo"]);
                 aux.Add(g);

@@ -10,6 +10,8 @@ namespace ApiEjemplo.Controllers
 {
     public class UsuarioController : ApiController
     {
+
+    
         [Route("api/Usuario/{NombreU}/{Pwd}")]
         public bool CheckLogin(string NombreU, string Pwd)
         {

@@ -32,6 +32,7 @@ namespace ApiEjemplo.Controllers
         public int Aceptar(int IdInvitacion, bool acepta)
         {
             int funca = InvitacionData.AceptarInvitacion(IdInvitacion, acepta);
+            return funca;
         }
 
 

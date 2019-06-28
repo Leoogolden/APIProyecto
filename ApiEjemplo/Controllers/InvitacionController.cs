@@ -19,5 +19,22 @@ namespace ApiEjemplo.Controllers
 
             return lista;
         }
+        [HttpPost]
+        [Route("api/Invitacion/Invitar/{Grupo}/{Invitante}/{Invitado}")]
+        public int InvitarAlGrupo(int Grupo, int Invitante, int Invitado)
+        {
+            int funca = InvitacionData.EnviarInvitacion(Grupo, Invitante, Invitado);
+            return funca;
+        }
+
+        [HttpPost]
+        [Route("api/Invitacion/Aceptar/{IdInvitacion}/{Acepta}")]
+        public int Aceptar(int IdInvitacion, bool acepta)
+        {
+            int funca = InvitacionData.AceptarInvitacion(IdInvitacion, acepta);
+        }
+
+
+
     }
 }

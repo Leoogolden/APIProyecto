@@ -45,7 +45,31 @@ namespace ApiEjemplo.Data
         public static int EnviarInvitacion(int a, int b, int c)
         {
 
+                SqlConnection Conexion = Conectar();
+                SqlCommand consulta = Conexion.CreateCommand();
+                consulta.CommandText = "InvitarAlGrupo";
+                consulta.CommandType = System.Data.CommandType.StoredProcedure;
+                consulta.Parameters.AddWithValue("@fkGrupo", a);
+                consulta.Parameters.AddWithValue("@fkUsuarioInvitante", b);
+                consulta.Parameters.AddWithValue("@fkUsuarioInvitado", c);
+                //int regsAfectados = consulta.ExecuteNonQuery();
+                return consulta.ExecuteNonQuery();
         }
+
+
+
+        public static int AceptarInvitacion(int a, bool b)
+        {
+
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "EliminarInvitacion";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@IdInvitacion", a);
+            consulta.Parameters.AddWithValue("@acepta", b);
+            return consulta.ExecuteNonQuery();
+        }
+
 
 
     }

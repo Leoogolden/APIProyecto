@@ -20,6 +20,30 @@ namespace ApiEjemplo.Controllers
             return ListaDeGrupos;
         }
 
+        [HttpGet]
+        [Route("api/Grupos/MiembrosGrupo/{id}")]
+        public List<Usuario> ListarMiembros(int id)
+        {
+            List<Usuario> ListaDeMiembros = GruposData.ObtenerMiembrosGrupo(id);
+
+            return ListaDeMiembros;
+        }
+
+
+        [HttpPost]
+       [Route("api/Grupos/CrearGrupo/{Nombre}/{Descripcion}/{idus}")]
+        public int CrearGrupo(string Nombre, string Descripcion, int idus)
+        {
+
+            int funciono = GruposData.insertarGrupo(Nombre, Descripcion, idus);
+
+            return funciono;
+        }
+
+
+
+
+
 
     }
 }

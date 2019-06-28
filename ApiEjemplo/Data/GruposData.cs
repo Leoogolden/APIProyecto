@@ -22,14 +22,15 @@ namespace ApiEjemplo.Data
             conector.Close();
         }
 
-        public static int insertarGrupo(Grupos g)
+        public static int insertarGrupo(string Nombre, string Descripcion, int idUsuario)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandText = "AgregarGrupo";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@Nombre" , g.Nombre);
-            consulta.Parameters.AddWithValue("@Descrpcion" , g.Descripcion);
+            consulta.Parameters.AddWithValue("@Nombre" , Nombre);
+            consulta.Parameters.AddWithValue("@Descrpcion" , Descripcion);
+            consulta.Parameters.AddWithValue("@idus", idUsuario);
             //int regsAfectados = consulta.ExecuteNonQuery();
             return consulta.ExecuteNonQuery();
         }
@@ -47,16 +48,39 @@ namespace ApiEjemplo.Data
             {
                 Grupos g = new Grupos();
                 g.Nombre = dataReader["Nombre"].ToString();
-
+                
                 g.Descripcion = dataReader["Descripcion"].ToString();
                 g.IdGrupo = Convert.ToInt32(dataReader["IdGrupo"]);
                 aux.Add(g);
             }
             Desconectar(Conexion);
             return aux;
-
-
         }
+        public static List<Usuario> ObtenerMiembrosGrupo(int id)
+        {
+            List<Usuario> aux = new List<Usuario>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "ListarMiembrosDelGrupo";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@id", id);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Usuario m = new Usuario();
+                m.IdUsuario = Convert.ToInt32(dataReader["IdUsuario"]);
+                m.Nombre = dataReader["Nombre"].ToString();
+                m.Mail = dataReader["Mail"].ToString();
+                m.NombreUsuario= dataReader["Usuario"].ToString();
+                m.Contraseña = dataReader["Contraseña"].ToString();
+                m.NroTelefono = Convert.ToInt32(dataReader["NumeroTelefono"]);
+                m.Edad= Convert.ToInt32(dataReader["Edad"]);
+                aux.Add(m);
+            }
+            Desconectar(Conexion);
+            return aux;
+        }
+
 
 
 

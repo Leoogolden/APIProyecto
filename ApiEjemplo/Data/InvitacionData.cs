@@ -35,6 +35,7 @@ namespace ApiEjemplo.Data
             while (dataReader.Read())
             {
                 Notificaciones n= new Notificaciones();
+                n.id = Convert.ToInt32(dataReader["idinv"]);
                 n.QuienInvita = dataReader["QuienInvito"].ToString();
                 n.NombreGrupo = dataReader["QueGrupo"].ToString();
                 listainvitaciones.Add(n);

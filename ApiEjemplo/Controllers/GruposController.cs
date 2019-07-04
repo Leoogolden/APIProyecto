@@ -34,9 +34,7 @@ namespace ApiEjemplo.Controllers
        [Route("api/Grupos/CrearGrupo/{Nombre}/{Descripcion}/{idus}")]
         public int CrearGrupo(string Nombre, string Descripcion, int idus)
         {
-
             int funciono = GruposData.insertarGrupo(Nombre, Descripcion, idus);
-
             return funciono;
         }
 

@@ -29,9 +29,9 @@ namespace ApiEjemplo.Controllers
 
         [HttpPost]
         [Route("api/Invitacion/Aceptar/{IdInvitacion}/{Acepta}")]
-        public int Aceptar(int IdInvitacion, bool acepta)
+        public int Aceptar(int IdInvitacion, bool Acepta)
         {
-            int funca = InvitacionData.AceptarInvitacion(IdInvitacion, acepta);
+            int funca = InvitacionData.AceptarInvitacion(IdInvitacion, Acepta);
             return funca;
         }
 

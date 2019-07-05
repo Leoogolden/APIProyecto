@@ -18,6 +18,12 @@ namespace ApiEjemplo.Models
         public Usuario()
         {
             IdUsuario = -1;
+            Nombre = "";
+            Mail = "";
+            NombreUsuario = "";
+            Contraseña = "";
+            NroTelefono = 0;
+            Edad = 0;
         }
     }
 }

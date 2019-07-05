@@ -11,15 +11,19 @@ namespace ApiEjemplo.Controllers
     public class UsuarioController : ApiController
     {
 
-    
+        [HttpGet]
         [Route("api/Usuario/{NombreU}/{Pwd}")]
-        public bool CheckLogin(string NombreU, string Pwd)
+        public Usuario CheckLogin(string NombreU, string Pwd)
         {
-            bool ingresado = UsuarioData.VerificarUsuario(NombreU, Pwd);
-            return ingresado;
+            Usuario User = UsuarioData.VerificarUsuario(NombreU, Pwd);
+            
+            return User;
         }
-
-
-
+        [HttpPost]
+        [Route("api/Usuario/Register/{NombreUs}/{Pwd}/{mail}/{nombre}/{NroTel}/{edad}")]
+        public void Register(String NombreUs, String Pwd, String mail, String nombre, int NroTel, int edad)
+        {
+            UsuarioData.CrearUsuario(mail, nombre, NombreUs, Pwd, NroTel, edad);
+        }
     }
 }

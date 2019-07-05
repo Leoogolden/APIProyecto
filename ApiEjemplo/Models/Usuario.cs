@@ -15,5 +15,9 @@ namespace ApiEjemplo.Models
         public int NroTelefono { get; set; }
         public int Edad { get; set; }
 
+        public Usuario()
+        {
+            IdUsuario = -1;
+        }
     }
 }

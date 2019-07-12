@@ -76,6 +76,17 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Edad",Edad);
             consulta.ExecuteNonQuery();
         }
-
+        public static void CambiarContra(int id, String Contra)
+        {
+            string contraseñaverif;
+            contraseñaverif = CalculateMD5Hash(Contra);
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "CambiarContrase";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@contra", contraseñaverif);
+            consulta.Parameters.AddWithValue("@id", id);
+            consulta.ExecuteNonQuery();
+        }
     }
 }

@@ -20,10 +20,18 @@ namespace ApiEjemplo.Controllers
             return User;
         }
         [HttpPost]
+        [Route("api/Usuario/CambiarContra/{Id}/{Contra}")]
+        public void CambiarContra(int Id, string Contra)
+        {
+            UsuarioData.CambiarContra(Id, Contra);
+
+        }
+        [HttpPost]
         [Route("api/Usuario/Register/{NombreUs}/{Pwd}/{mail}/{nombre}/{NroTel}/{edad}")]
         public void Register(String NombreUs, String Pwd, String mail, String nombre, int NroTel, int edad)
         {
             UsuarioData.CrearUsuario(mail, nombre, NombreUs, Pwd, NroTel, edad);
         }
+        
     }
 }

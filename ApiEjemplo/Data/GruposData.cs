@@ -31,8 +31,8 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Nombre" , Nombre);
             consulta.Parameters.AddWithValue("@Descrpcion" , Descripcion);
             consulta.Parameters.AddWithValue("@idus", idUsuario);
-            //int regsAfectados = consulta.ExecuteNonQuery();
-            return consulta.ExecuteNonQuery();
+            int regsAfectados = consulta.ExecuteNonQuery();
+            return regsAfectados;
         }
 
         public static List<Grupos> ObtenerGruposxUsuario(int id)

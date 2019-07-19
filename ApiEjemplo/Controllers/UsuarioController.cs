@@ -12,6 +12,16 @@ namespace ApiEjemplo.Controllers
     {
 
         [HttpGet]
+        [Route("api/Usuario")]
+
+        public List<Usuario> ListaUsr() {
+
+            List<Usuario> a = UsuarioData.ListarUsuarios();
+            return a;
+
+        }
+
+        [HttpGet]
         [Route("api/Usuario/{NombreU}/{Pwd}")]
         public Usuario CheckLogin(string NombreU, string Pwd)
         {

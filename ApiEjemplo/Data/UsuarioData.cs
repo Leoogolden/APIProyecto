@@ -47,6 +47,30 @@ namespace ApiEjemplo.Data
             }
             return User;
         }
+        public static List <Usuario> ListarUsuarios()
+        {
+            List<Usuario> lista = new List<Usuario>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "ListarUsuarios";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read()) {
+                Usuario aux = new Usuario();
+                aux.IdUsuario = Convert.ToInt32(dataReader["IdUsuario"]);
+                aux.Mail = dataReader["Mail"].ToString();
+                aux.NombreUsuario = dataReader["Usuario"].ToString();
+                aux.Nombre = dataReader["Nombre"].ToString();
+                aux.Contraseña = dataReader["Contraseña"].ToString();
+                aux.NroTelefono = Convert.ToInt32(dataReader["NumeroTelefono"]);
+                aux.Edad = Convert.ToInt32(dataReader["Edad"]);
+                lista.Add(aux);
+            }
+            Desconectar(Conexion);
+                return lista;
+        }
+
         public static string CalculateMD5Hash(string input){
             // step 1, calculate MD5 hash from input
                     MD5 md5 = System.Security.Cryptography.MD5.Create();

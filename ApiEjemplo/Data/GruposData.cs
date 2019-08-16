@@ -31,7 +31,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Nombre" , Nombre);
             consulta.Parameters.AddWithValue("@Descrpcion" , Descripcion);
             consulta.Parameters.AddWithValue("@idus", idUsuario);
-            int regsAfectados = consulta.ExecuteNonQuery();
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
             return regsAfectados;
         }
 

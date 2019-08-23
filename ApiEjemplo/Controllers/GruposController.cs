@@ -37,7 +37,13 @@ namespace ApiEjemplo.Controllers
             int funciono = GruposData.insertarGrupo(Nombre, Descripcion, idus);
             return funciono;
         }
-
+        [HttpGet]
+        [Route("api/Grupos/EsAdmin/{id}/{idgru}")]
+        public bool EsAdministrador(int id, int idgru)
+        {
+            bool devuelveadmin = GruposData.EsAdmin(id, idgru);
+            return devuelveadmin;
+        }
 
 
 

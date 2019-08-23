@@ -34,6 +34,23 @@ namespace ApiEjemplo.Data
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
             return regsAfectados;
         }
+        public static bool EsAdmin(int idus, int idgrupo)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "EsAdminDelGrupo";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@id", idus);
+            consulta.Parameters.AddWithValue("@idgrupo", idgrupo);
+            bool asd = false;
+            int quepaso = Convert.ToInt32(consulta.ExecuteScalar());
+            if (quepaso == 0){
+                asd = true;
+            }
+                
+
+            return asd;
+        }
 
         public static List<Grupos> ObtenerGruposxUsuario(int id)
         {
@@ -80,11 +97,6 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return aux;
         }
-
-
-
-
-
 
     }
 }

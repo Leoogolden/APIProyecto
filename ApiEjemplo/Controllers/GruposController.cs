@@ -44,7 +44,13 @@ namespace ApiEjemplo.Controllers
             bool devuelveadmin = GruposData.EsAdmin(id, idgru);
             return devuelveadmin;
         }
-
+        [HttpPost]
+        [Route("api/Grupos/EditGrupo/{Nombre}/{Descripcion}/{idgru}/{idus}")]
+        public int EditGrupo(string Nombre, string Descripcion, int idgru, int idus)
+        {
+            int funciono = GruposData.EditarGrupo(idus, idgru, Nombre, Descripcion);
+            return funciono;
+        }
 
 
 

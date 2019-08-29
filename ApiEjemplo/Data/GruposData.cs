@@ -52,6 +52,20 @@ namespace ApiEjemplo.Data
             return asd;
         }
 
+        public static int EditarGrupo(int id, int idgru, String nombre, String desc)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "EsAdminDelGrupo";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idgru", idgru);
+            consulta.Parameters.AddWithValue("@nombre", nombre);
+            consulta.Parameters.AddWithValue("@nombre", desc);
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            return regsAfectados;
+        }
+
+
         public static List<Grupos> ObtenerGruposxUsuario(int id)
         {
             List<Grupos> aux = new List<Grupos>();

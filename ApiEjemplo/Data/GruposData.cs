@@ -56,11 +56,11 @@ namespace ApiEjemplo.Data
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "EsAdminDelGrupo";
+            consulta.CommandText = "EditarGrupo";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@idgru", idgru);
             consulta.Parameters.AddWithValue("@nombre", nombre);
-            consulta.Parameters.AddWithValue("@nombre", desc);
+            consulta.Parameters.AddWithValue("@desc", desc);
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
             return regsAfectados;
         }

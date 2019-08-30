@@ -32,6 +32,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Descrpcion" , Descripcion);
             consulta.Parameters.AddWithValue("@idus", idUsuario);
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            Desconectar(Conexion);
             return regsAfectados;
         }
         public static bool EsAdmin(int idus, int idgrupo)
@@ -47,8 +48,8 @@ namespace ApiEjemplo.Data
             if (quepaso == 0){
                 asd = true;
             }
-                
 
+            Desconectar(Conexion);
             return asd;
         }
 
@@ -62,6 +63,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@nombre", nombre);
             consulta.Parameters.AddWithValue("@desc", desc);
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            Desconectar(Conexion);
             return regsAfectados;
         }
 
@@ -110,6 +112,34 @@ namespace ApiEjemplo.Data
             }
             Desconectar(Conexion);
             return aux;
+        }
+        public static int EliminarDelGrupo(int idus, int idgru) 
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "EliminarDelGrupo";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idgru", idgru);
+            consulta.Parameters.AddWithValue("@idus", idus);
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+
+            Desconectar(Conexion);
+            return regsAfectados;
+        }
+        public static int HacerAdmin(int idus, int idgru)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "HacerAdmin";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idgru", idgru);
+            consulta.Parameters.AddWithValue("@idus", idus);
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+
+            Desconectar(Conexion);
+            return regsAfectados;
+
+
         }
 
     }

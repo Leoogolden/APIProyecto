@@ -52,6 +52,20 @@ namespace ApiEjemplo.Controllers
             return funciono;
         }
 
+        [HttpPost]
+        [Route("api/Grupos/EliminarUsDelGrupo/{idus}/{idgru}")]
+        public int EditGrupo(int us, int idg)
+        {
+            int funciono = GruposData.EliminarDelGrupo(us, idg);
+            return funciono;
+        }
+        [HttpPost]
+        [Route("api/Grupos/HacerAdminDelGrupo/{idus}/{idgru}")]
+        public int HacerAdminDelGrupo(int us, int idg)
+        {
+            int funciono = GruposData.HacerAdmin(us, idg);
+            return funciono;
+        }
 
 
 

@@ -123,10 +123,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\InvitacionController.cs" />
     <Compile Include="Controllers\PersonaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Data\ActividadData.cs" />
     <Compile Include="Data\ArrayList.cs" />
     <Compile Include="Data\DBHelper.cs" />
     <Compile Include="Data\GruposData.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Actividad.cs" />
     <Compile Include="Models\Grupos.cs" />
     <Compile Include="Models\Invitacion.cs" />
     <Compile Include="Models\Notificaciones.cs" />

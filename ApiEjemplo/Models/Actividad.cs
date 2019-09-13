@@ -7,137 +7,50 @@ namespace ApiEjemplo.Models
 {
     public class Actividad
     {
-        private int idActiv;
-
-        public int GetIdActiv()
+        public int IdActiv
         {
-            return idActiv;
+            get;
+            set;
         }
-
-        public void SetIdActiv(int value)
-        {
-            idActiv = value;
-        }
-
-        private String nombre;
-
-        public String GetNombre()
-        {
-            return nombre;
-        }
-
-        public void SetNombre(String value)
-        {
-            nombre = value;
-        }
-
-        private String descripcion;
-
-        public String GetDescripcion()
-        {
-            return descripcion;
-        }
-
-        public void SetDescripcion(String value)
-        {
-            descripcion = value;
-        }
-
-        private int edadMin;
-
-        public int GetEdadMin()
-        {
-            return edadMin;
-        }
-
-        public void SetEdadMin(int value)
-        {
-            edadMin = value;
-        }
-
-        private int edadMax;
-
-        public int GetEdadMax()
-        {
-            return edadMax;
-        }
-
-        public void SetEdadMax(int value)
-        {
-            edadMax = value;
-        }
-
-        private int limPer;
-
-        public int GetLimPer()
-        {
-            return limPer;
-        }
-
-        public void SetLimPer(int value)
-        {
-            limPer = value;
-        }
-
-        private string calle;
-
-        public string GetCalle()
-        {
-            return calle;
-        }
-
-        public void SetCalle(string value)
-        {
-            calle = value;
-        }
-
-        private int direccion;
-
-        public int GetDireccion()
-        {
-            return direccion;
-        }
-
-        public void SetDireccion(int value)
-        {
-            direccion = value;
-        }
-
-        private DateTime fecha;
-
-        public DateTime GetFecha()
-        {
-            return fecha;
-        }
-
-        public void SetFecha(DateTime value)
-        {
-            fecha = value;
-        }
-
+        public string Nombre { get; set; }
+        
+        public string Descripcion { get; set; }
+        
+        public int EdadMin { get; set; }
+        
+        public int EdadMax { get; set; }
+        
+        public int LimPer { get; set; }
+        
+        public string Calle { get; set; }
+        
+        public int Direccion { get; set; }
+        
+        public DateTime Fecha { get; set; }
+        
         public Actividad(int idActiv, string nombre, string descripcion, int edadMin, int edadMax, int limPer, string calle, int direccion, DateTime fecha)
         {
-            this.idActiv = idActiv;
-            this.nombre = nombre;
-            this.descripcion = descripcion;
-            this.edadMin = edadMin;
-            this.edadMax = edadMax;
-            this.limPer = limPer;
-            this.calle = calle;
-            this.direccion = direccion;
-            this.fecha = fecha;
+            this.IdActiv = idActiv;
+            this.Nombre = nombre;
+            this.Descripcion = descripcion;
+            this.EdadMin = edadMin;
+            this.EdadMax = edadMax;
+            this.LimPer = limPer;
+            this.Calle = calle;
+            this.Direccion = direccion;
+            this.Fecha = fecha;
         }
         public Actividad()
         {
-            this.idActiv = 0;
-            this.nombre = "";
-            this.descripcion = "";
-            this.edadMin = 0;
-            this.edadMax = 0;
-            this.limPer = 0;
-            this.calle = "";
-            this.direccion = 0;
-            this.fecha = DateTime.Now;
+            this.IdActiv = 0;
+            this.Nombre = "";
+            this.Descripcion = "";
+            this.EdadMin = 0;
+            this.EdadMax = 0;
+            this.LimPer = 0;
+            this.Calle = "";
+            this.Direccion = 0;
+            this.Fecha = DateTime.Now;
         }
     }
 }

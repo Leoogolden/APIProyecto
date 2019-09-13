@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ActivGruposController.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\GruposController.cs" />
     <Compile Include="Controllers\InvitacionController.cs" />

@@ -21,11 +21,11 @@ namespace ApiEjemplo.Data
         {
             conector.Close();
         }
-        public static int insertarActividad(string nombre, string descripcion, int edadMin, int edadMax, int limPer, string calle, int direccion, DateTime fecha)
+        public static int insertarActividad(string nombre, string descripcion, int edadMin, int edadMax, int limPer, string calle, int direccion, DateTime fecha, int idgrupo)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "AgregarActiv";
+            consulta.CommandText = "AgregarActivDelGrupo";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@Fecha", fecha);
             consulta.Parameters.AddWithValue("@EdadMin", edadMin);
@@ -35,6 +35,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Dir",direccion );
             consulta.Parameters.AddWithValue("@Nom",nombre );
             consulta.Parameters.AddWithValue("@Desc",descripcion );
+            consulta.Parameters.AddWithValue("@idgru", idgrupo);
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
             Desconectar(Conexion);
             return regsAfectados;

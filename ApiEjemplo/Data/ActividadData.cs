@@ -52,15 +52,15 @@ namespace ApiEjemplo.Data
             while (dataReader.Read())
             {
                 Actividad n = new Actividad();
-                n.IdActiv = (Convert.ToInt32(dataReader["idactividad"]));
-                n.Nombre=(dataReader["nombre"].ToString());
-                n.Descripcion=(dataReader["descripcion"].ToString());
+                n.IdActiv = Convert.ToInt32(dataReader["idactividad"]);
+                n.Nombre=dataReader["nombre"].ToString();
+                n.Descripcion=dataReader["descripcion"].ToString();
                 n.Fecha=Convert.ToDateTime(dataReader["fecha"]);
-                n.EdadMin=(Convert.ToInt32(dataReader["edadmin"]));
-                n.EdadMax=(Convert.ToInt32(dataReader["edadmax"]));
-                    n.LimPer=(Convert.ToInt32(dataReader["limitepersonas"]));
-                n.Calle=(dataReader["calle"].ToString());
-                n.Direccion=Convert.ToInt32(dataReader["direccion"]);
+                n.EdadMin=Convert.ToInt32(dataReader["edadmin"]);
+                n.EdadMax=Convert.ToInt32(dataReader["edadmax"]);
+                    n.LimPer=Convert.ToInt32(dataReader["limitepersonas"]);
+                n.Calle=dataReader["calle"].ToString();
+                n.Direccion=(Convert.ToInt32(dataReader["direccion"]));
                 listaactivs.Add(n);
             }
             return listaactivs;

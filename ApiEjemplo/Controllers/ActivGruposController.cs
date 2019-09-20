@@ -21,7 +21,7 @@ namespace ApiEjemplo.Controllers
         }
         [HttpPost]
         [Route("api/ActivsGrupo/CrearActiv/{Nombre}/{Descripcion}/{Fecha}/{EdadMin}/{EdadMax}/{LimPer}/{Calle}/{Dir}/{idg}")]
-        public int CrearActiv(string Nombre, string Descripcion,DateTime Fecha, int EdadMin, int EdadMax, int LimPer, string Calle, int Dir, int idg)
+        public int CrearActiv(string Nombre, string Descripcion, DateTime Fecha, int EdadMin, int EdadMax, int LimPer, string Calle, int Dir, int idg)
         {
             int funciono = ActividadData.insertarActividad(Nombre, Descripcion, EdadMin, EdadMax, LimPer, Calle, Dir, Fecha, idg);
             return funciono;

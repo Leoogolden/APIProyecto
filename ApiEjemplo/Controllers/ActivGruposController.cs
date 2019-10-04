@@ -20,11 +20,19 @@ namespace ApiEjemplo.Controllers
             return ListaDeActivs;
         }
         [HttpPost]
-        [Route("api/ActivsGrupo/CrearActiv/{Nombre}/{Descripcion}/{Fecha}/{EdadMin}/{EdadMax}/{LimPer}/{Calle}/{Dir}/{idg}")]
-        public int CrearActiv(string Nombre, string Descripcion, DateTime Fecha, int EdadMin, int EdadMax, int LimPer, string Calle, int Dir, int idg)
+        [Route("api/ActivsGrupo/CrearActiv/{Nombre}/{Descripcion}/{Fecha}/{EdadMin}/{EdadMax}/{LimPer}/{Calle}/{Dir}/{idg}/{idus}")]
+        public int CrearActiv(string Nombre, string Descripcion, DateTime Fecha, int EdadMin, int EdadMax, int LimPer, string Calle, int Dir, int idg, int idus)
         {
-            int funciono = ActividadData.insertarActividad(Nombre, Descripcion, EdadMin, EdadMax, LimPer, Calle, Dir, Fecha, idg);
+            int funciono = ActividadData.insertarActividad(Nombre, Descripcion, EdadMin, EdadMax, LimPer, Calle, Dir, Fecha, idg, idus);
             return funciono;
+        }
+        [HttpPost]
+        [Route("api/ActivsGrupo/ConfAsis/{idgru}/{idactiv}/{idus}")]
+        public int ConfAsis(int idgru, int idactiv, int idus)
+        {
+            int funciono = ActividadData.ConfirmacionAsistencia(idgru,idactiv,idus);
+            return funciono;
+
         }
 
 

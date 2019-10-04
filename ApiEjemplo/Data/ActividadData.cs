@@ -21,7 +21,7 @@ namespace ApiEjemplo.Data
         {
             conector.Close();
         }
-        public static int insertarActividad(string nombre, string descripcion, int edadMin, int edadMax, int limPer, string calle, int direccion, DateTime fecha, int idgrupo)
+        public static int insertarActividad(string nombre, string descripcion, int edadMin, int edadMax, int limPer, string calle, int direccion, DateTime fecha, int idgrupo, int idus)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
@@ -36,6 +36,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@Nom",nombre );
             consulta.Parameters.AddWithValue("@Desc",descripcion );
             consulta.Parameters.AddWithValue("@idgru", idgrupo);
+            consulta.Parameters.AddWithValue("@idus", idus);
             int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
             Desconectar(Conexion);
             return regsAfectados;
@@ -65,6 +66,19 @@ namespace ApiEjemplo.Data
                 listaactivs.Add(n);
             }
             return listaactivs;
+        }
+        public static int ConfirmacionAsistencia(int idgrupo, int idactiv , int idus)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "AltaAsistencia";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idgru", idgrupo);
+            consulta.Parameters.AddWithValue("@idactiv", idactiv);
+            consulta.Parameters.AddWithValue("@idus", idus);
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            Desconectar(Conexion);
+            return regsAfectados;
         }
 
     }

@@ -34,7 +34,14 @@ namespace ApiEjemplo.Controllers
             return funciono;
 
         }
+        [HttpGet]
+        [Route("api/ActivsGrupo/TraerMiembrosActv/{idactiv}")]
+        public List<Usuario> TraerMiembrosActv (int idactiv)
+        {
+            List<Usuario> ListaDeMiembros = ActividadData.ObtenerParticipantesActiv(idactiv);
 
+            return ListaDeMiembros;
+        }
 
     }
 }

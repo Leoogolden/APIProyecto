@@ -80,6 +80,30 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return regsAfectados;
         }
+        public static List<Usuario> ObtenerParticipantesActiv(int id)
+        {
+            List<Usuario> aux = new List<Usuario>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "ListaParticipanActiv";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@IdActiv", id);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Usuario m = new Usuario();
+                m.IdUsuario = Convert.ToInt32(dataReader["IdUsuario"]);
+                m.Nombre = dataReader["Nombre"].ToString();
+                m.Mail = dataReader["Mail"].ToString();
+                m.NombreUsuario = dataReader["Usuario"].ToString();
+                m.Contraseña = dataReader["Contraseña"].ToString();
+                m.NroTelefono = Convert.ToInt32(dataReader["NumeroTelefono"]);
+                m.Edad = Convert.ToInt32(dataReader["Edad"]);
+                aux.Add(m);
+            }
+            Desconectar(Conexion);
+            return aux;
+        }
 
     }
 }

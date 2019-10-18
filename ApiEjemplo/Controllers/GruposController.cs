@@ -64,7 +64,7 @@ namespace ApiEjemplo.Controllers
 
         [HttpPost]
         [Route("api/Grupos/EliminarUsDelGrupo/{idus}/{idgru}")]
-        public int EditGrupo(int us, int idg)
+        public int EliminarUsuario(int us, int idg)
         {
             int funciono = GruposData.EliminarDelGrupo(us, idg);
             return funciono;

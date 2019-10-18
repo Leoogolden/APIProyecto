@@ -30,6 +30,16 @@ namespace ApiEjemplo.Controllers
         }
 
 
+        [HttpGet]
+        [Route("api/Grupos/Estaono/{idus}/{idgru}")]
+        public bool Estaono(int idus, int idgru)
+        {
+            bool esta = GruposData.EstaEnGrupo(idus, idgru);
+            return esta;
+
+        }
+
+
         [HttpPost]
        [Route("api/Grupos/CrearGrupo/{Nombre}/{Descripcion}/{idus}")]
         public int CrearGrupo(string Nombre, string Descripcion, int idus)

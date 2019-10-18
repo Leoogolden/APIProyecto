@@ -52,6 +52,29 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return asd;
         }
+        public static bool EstaEnGrupo(int idus, int idgrupo)
+        {
+            bool blnReturnValue = false;
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "EstaEnGrupo";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idGrupo"     , idgrupo);
+            consulta.Parameters.AddWithValue("@idUsuario"   , idus);
+
+            try
+            {
+                blnReturnValue = Convert.ToBoolean(consulta.ExecuteScalar());
+            }
+            catch (Exception e)
+            {
+
+            }
+            
+            Desconectar(Conexion);
+            return blnReturnValue;
+        }
+
 
         public static int EditarGrupo(int id, int idgru, String nombre, String desc)
         {

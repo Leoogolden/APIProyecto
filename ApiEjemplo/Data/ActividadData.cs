@@ -127,7 +127,29 @@ namespace ApiEjemplo.Data
                 n.Direccion = (Convert.ToInt32(dataReader["direccion"]));
                 listaactivs.Add(n);
             }
+            Desconectar(Conexion);
             return listaactivs;
+        }
+
+        public static Grupos ObtenerGrupo(int id)
+        {
+
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "TraerGrupoDeActiv";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idactiv", id);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            Grupos g = new Grupos();
+            while (dataReader.Read()) { 
+                      
+                      g.Nombre = dataReader["Nombre"].ToString();
+                      g.Descripcion = dataReader["Descripcion"].ToString();
+                      g.IdGrupo = Convert.ToInt32(dataReader["IdGrupo"]);
+            }
+            
+            Desconectar(Conexion);
+            return g;
         }
 
     }

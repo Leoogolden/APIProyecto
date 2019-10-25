@@ -48,11 +48,11 @@ namespace ApiEjemplo.Controllers
             return funciono;
         }
         [HttpGet]
-        [Route("api/Grupos/EsAdmin/{id}/{idgru}")]
-        public bool EsAdministrador(int id, int idgru)
+        [Route("api/Grupos/EsAdmin/{idgru}")]
+        public int EsAdmin(int idgru)
         {
-            bool devuelveadmin = GruposData.EsAdmin(id, idgru);
-            return devuelveadmin;
+            int idadmin = GruposData.EsAdmin(idgru);
+            return idadmin;
         }
         [HttpPost]
         [Route("api/Grupos/EditGrupo/{Nombre}/{Descripcion}/{idgru}/{idus}")]

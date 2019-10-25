@@ -19,6 +19,15 @@ namespace ApiEjemplo.Controllers
 
             return ListaDeActivs;
         }
+        [HttpGet]
+        [Route("api/Activs/TraerGrupo/{id}")]
+        public Grupos TraerGrupo(int id)
+        {
+            Grupos grupardo = ActividadData.ObtenerGrupo(id);
+
+            return grupardo;
+        }
+
 
 
     }

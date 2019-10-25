@@ -35,22 +35,17 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return regsAfectados;
         }
-        public static bool EsAdmin(int idus, int idgrupo)
+        public static int EsAdmin(int idgrupo)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
             consulta.CommandText = "EsAdminDelGrupo";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
-            consulta.Parameters.AddWithValue("@id", idus);
             consulta.Parameters.AddWithValue("@idgrupo", idgrupo);
             bool asd = false;
             int quepaso = Convert.ToInt32(consulta.ExecuteScalar());
-            if (quepaso == 0){
-                asd = true;
-            }
-
             Desconectar(Conexion);
-            return asd;
+            return quepaso;
         }
         public static bool EstaEnGrupo(int idus, int idgrupo)
         {

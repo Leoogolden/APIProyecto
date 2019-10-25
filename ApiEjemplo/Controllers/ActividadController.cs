@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ApiEjemplo.Data;
+using ApiEjemplo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,7 +11,14 @@ namespace ApiEjemplo.Controllers
 {
     public class ActividadController : ApiController
     {
+        [HttpGet]
+        [Route("api/Activs")]
+        public List<Actividad> Activs()
+        {
+            List<Actividad> ListaDeActivs = ActividadData.TraerActividades();
 
+            return ListaDeActivs;
+        }
 
 
     }

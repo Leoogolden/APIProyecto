@@ -34,7 +34,13 @@ namespace ApiEjemplo.Controllers
             int funca = InvitacionData.AceptarInvitacion(IdInvitacion, Acepta);
             return funca;
         }
-
+        [HttpPost]
+        [Route("api/Invitacion/SolicitaUnirse/{Grupo}/{Solicitante}")]
+        public int SolicitaUnirse(int Grupo, int Solicitante)
+        {
+            int funca = InvitacionData.SolicitaUnirse(Grupo, Solicitante);
+            return funca;
+        }
 
 
     }

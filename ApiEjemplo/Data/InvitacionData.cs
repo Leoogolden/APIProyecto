@@ -70,6 +70,16 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@acepta", b);
             return consulta.ExecuteNonQuery();
         }
+        public static int SolicitaUnirse (int idgru, int idsolicita)
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "SolicitaUnirse";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idgrupo", idgru);
+            consulta.Parameters.AddWithValue("@idsolicitante", idsolicita);
+            return consulta.ExecuteNonQuery();
+        }
 
 
 

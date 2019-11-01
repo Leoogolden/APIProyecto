@@ -50,7 +50,7 @@ namespace ApiEjemplo.Controllers
 
             return lista;
         }
-        [HttpGet]
+        [HttpPost]
         [Route("api/Invitacion/AceptaSolicitud/{idadm}/{idsol}/{aceptaono}")]
         public int AceptaSolicitud(int idadm, int idsol, bool aceptaono)
         {

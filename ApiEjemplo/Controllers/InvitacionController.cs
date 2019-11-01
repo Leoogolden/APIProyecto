@@ -35,13 +35,28 @@ namespace ApiEjemplo.Controllers
             return funca;
         }
         [HttpPost]
-        [Route("api/Invitacion/SolicitaUnirse/{Grupo}/{Solicitante}")]
-        public int SolicitaUnirse(int Grupo, int Solicitante)
+        [Route("api/Invitacion/SolicitaUnirse/{Grupo}/{Solicitante}/{idactiv}")]
+        public int SolicitaUnirse(int Grupo, int Solicitante, int idactiv)
         {
-            int funca = InvitacionData.SolicitaUnirse(Grupo, Solicitante);
+            int funca = InvitacionData.SolicitaUnirse(Grupo, Solicitante, idactiv);
             return funca;
         }
+        [HttpGet]
+        [Route("api/Invitacion/Solicitudes/{idadmin}")]
+        public List<Notificaciones> Solicitudes(int idadmin)
+        {
+            List<Notificaciones> lista = new List<Notificaciones>();
+            lista = InvitacionData.ListarSolicitudes(idadmin);
 
+            return lista;
+        }
+        [HttpGet]
+        [Route("api/Invitacion/AceptaSolicitud/{idadm}/{idsol}/{aceptaono}")]
+        public int AceptaSolicitud(int idadm, int idsol, bool aceptaono)
+        {
+            int funca = InvitacionData.AceptarSolicitud(idadm, idsol,aceptaono);
+            return funca;
+        }
 
 
     }

@@ -28,7 +28,7 @@ namespace ApiEjemplo.Data
             listainvitaciones = new List<Notificaciones>();
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "Notificaciones";
+            consulta.CommandText = "ListarNotificaciones";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@IdUsuarioInvitado", idusuario);
             SqlDataReader dataReader = consulta.ExecuteReader();
@@ -70,7 +70,7 @@ namespace ApiEjemplo.Data
             consulta.Parameters.AddWithValue("@acepta", b);
             return consulta.ExecuteNonQuery();
         }
-        public static int SolicitaUnirse (int idgru, int idsolicita)
+        public static int SolicitaUnirse (int idgru, int idsolicita, int idactiv)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
@@ -78,10 +78,42 @@ namespace ApiEjemplo.Data
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@idgrupo", idgru);
             consulta.Parameters.AddWithValue("@idsolicitante", idsolicita);
+            consulta.Parameters.AddWithValue("@idactiv", idactiv);
             return consulta.ExecuteNonQuery();
         }
+        public static List<Notificaciones> ListarSolicitudes(int idadmin)
+        {
+                List<Notificaciones> listasolicitudes;
+                listasolicitudes = new List<Notificaciones>();
+                SqlConnection Conexion = Conectar();
+                SqlCommand consulta = Conexion.CreateCommand();
+                consulta.CommandText = "ListarSolicitudes";
+                consulta.CommandType = System.Data.CommandType.StoredProcedure;
+                consulta.Parameters.AddWithValue("@idadmin", idadmin);
+                SqlDataReader dataReader = consulta.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    Notificaciones n = new Notificaciones();
+                    n.id = Convert.ToInt32(dataReader["idsol"]);
+                    n.QuienInvita = dataReader["QuienSolicita"].ToString();
+                    n.NombreGrupo = dataReader["QueGrupo"].ToString();
+                    listasolicitudes.Add(n);
 
+                }
+                return listasolicitudes;
+        }
+        public static int AceptarSolicitud(int idadmin, int idsol, bool acepta )
+        {
 
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "AceptaSolicitud";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idsolicitud", idsol);
+            consulta.Parameters.AddWithValue("@idadmin", idadmin);
+            consulta.Parameters.AddWithValue("@acepta", acepta);
+            return consulta.ExecuteNonQuery();
+        }
 
     }
 }

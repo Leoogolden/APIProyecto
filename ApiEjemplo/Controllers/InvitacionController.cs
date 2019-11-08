@@ -57,7 +57,15 @@ namespace ApiEjemplo.Controllers
             int funca = InvitacionData.AceptarSolicitud(idadm, idsol,aceptaono);
             return funca;
         }
+        [HttpGet]
+        [Route("api/Invitacion/Solicitudes/VerPendientes/{idsol}")]
+        public List<Notificaciones> VerPendientes(int idsol)
+        {
+            List<Notificaciones> lista = new List<Notificaciones>();
+            lista = InvitacionData.VerSolPen(idsol);
 
+            return lista;
+        }
 
     }
 }

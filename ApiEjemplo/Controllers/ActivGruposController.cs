@@ -42,6 +42,14 @@ namespace ApiEjemplo.Controllers
 
             return ListaDeMiembros;
         }
+        [HttpPost]
+        [Route("api/ActivsGrupo/BajaDeActiv/{idus}/{idactiv}")]
+        public int BajaDeActiv(int idactiv, int idus)
+        {
+            int regsafec = ActividadData.BajaActividad(idus, idactiv);
+
+            return regsafec;
+        }
 
     }
 }

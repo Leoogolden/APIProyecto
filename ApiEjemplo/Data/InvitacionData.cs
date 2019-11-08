@@ -102,7 +102,28 @@ namespace ApiEjemplo.Data
                 }
                 return listasolicitudes;
         }
-        public static int AceptarSolicitud(int idadmin, int idsol, bool acepta )
+        public static List<Notificaciones> VerSolPen(int idus)
+        {
+            List<Notificaciones> listasolicitudes;
+            listasolicitudes = new List<Notificaciones>();
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "ListarPendientes";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idus", idus);
+            SqlDataReader dataReader = consulta.ExecuteReader();
+            while (dataReader.Read())
+            {
+                Notificaciones n = new Notificaciones();
+                n.id = Convert.ToInt32(dataReader["idsol"]);
+                n.QuienInvita = dataReader["QuienAcepta"].ToString();
+                n.NombreGrupo = dataReader["QueGrupo"].ToString();
+                listasolicitudes.Add(n);
+
+            }
+            return listasolicitudes;
+        }
+            public static int AceptarSolicitud(int idadmin, int idsol, bool acepta )
         {
 
             SqlConnection Conexion = Conectar();

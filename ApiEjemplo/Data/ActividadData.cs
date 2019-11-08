@@ -151,6 +151,17 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return g;
         }
-
+        public static int BajaActividad(int idus, int idac) 
+        {
+            SqlConnection Conexion = Conectar();
+            SqlCommand consulta = Conexion.CreateCommand();
+            consulta.CommandText = "BajaActiv";
+            consulta.CommandType = System.Data.CommandType.StoredProcedure;
+            consulta.Parameters.AddWithValue("@idactiv", idac);
+            consulta.Parameters.AddWithValue("@idus", idus);
+            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            Desconectar(Conexion);
+            return regsAfectados;
+        }
     }
 }

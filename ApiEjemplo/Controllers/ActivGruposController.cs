@@ -50,6 +50,7 @@ namespace ApiEjemplo.Controllers
 
             return regsafec;
         }
+        
 
     }
 }

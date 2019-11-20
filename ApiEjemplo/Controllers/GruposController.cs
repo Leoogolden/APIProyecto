@@ -70,11 +70,12 @@ namespace ApiEjemplo.Controllers
             return funciono;
         }
         [HttpPost]
-        [Route("api/Grupos/HacerAdminDelGrupo/{idus}/{idgru}")]
-        public int HacerAdminDelGrupo(int us, int idg)
+        [HttpGet]
+        [Route("api/Grupos/Pendiente/{idus}/{idgru}")]
+        public bool Pendiente(int idus, int idgru)
         {
-            int funciono = GruposData.HacerAdmin(us, idg);
-            return funciono;
+            bool regac = GruposData.EstaPendiente(idus, idgru);
+            return regac;
         }
 
 

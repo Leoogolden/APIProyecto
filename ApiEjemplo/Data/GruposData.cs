@@ -42,7 +42,7 @@ namespace ApiEjemplo.Data
             consulta.CommandText = "EsAdminDelGrupo";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@idgrupo", idgrupo);
-            bool asd = false;
+            
             int quepaso = Convert.ToInt32(consulta.ExecuteScalar());
             Desconectar(Conexion);
             return quepaso;
@@ -144,21 +144,22 @@ namespace ApiEjemplo.Data
             Desconectar(Conexion);
             return regsAfectados;
         }
-        public static int HacerAdmin(int idus, int idgru)
+        public static bool EstaPendiente(int idus, int idgru)
         {
             SqlConnection Conexion = Conectar();
             SqlCommand consulta = Conexion.CreateCommand();
-            consulta.CommandText = "HacerAdmin";
+            consulta.CommandText = "EstaPendiente";
             consulta.CommandType = System.Data.CommandType.StoredProcedure;
             consulta.Parameters.AddWithValue("@idgru", idgru);
             consulta.Parameters.AddWithValue("@idus", idus);
-            int regsAfectados = Convert.ToInt32(consulta.ExecuteScalar());
+            bool regsAfectados = Convert.ToBoolean(consulta.ExecuteScalar());
 
             Desconectar(Conexion);
             return regsAfectados;
 
 
         }
+        
 
     }
 }
